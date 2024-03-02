@@ -17,6 +17,6 @@ COPY vueblog-java/target/vueblog-0.0.1-SNAPSHOT.jar /vueblog-java/vueblog-java.j
 
 # 添加脚本的执行权限
 RUN chmod +x /vueblog-java/bin/service.sh
-WORKDIR /vueblog-java
+#WORKDIR /vueblog-java
 
 ENTRYPOINT ["bin/service.sh","start","vueblog-java.jar","--no-daemon"]
