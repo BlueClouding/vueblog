@@ -22,7 +22,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file vueblog-java/pom.xml
     - name: BuildDockerImage
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file vueblog-java/Dockerfile --tag demo:$(date +%s)
     - name: Publish to Docker Repository
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
