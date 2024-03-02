@@ -20,7 +20,7 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file vueblog-java/pom.xml
     - name: BuildDockerImage
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Publish to Docker Repository
