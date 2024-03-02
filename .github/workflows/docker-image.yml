@@ -24,7 +24,7 @@ jobs:
     - name: BuildDockerImage
       run: docker build . --file vueblog-java/Dockerfile --tag demo:$(date +%s)
     - name: Publish to Docker Repository
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v4
       with:
         name: 1301866313ding/demo:demo
         username: ${{ secrets.DOCKERHUB_USERNAME }}
