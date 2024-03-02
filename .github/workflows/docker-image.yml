@@ -28,6 +28,7 @@ jobs:
       with:
         name: 1301866313ding/demo:demo
         file: vueblog-java/Dockerfile
+        context: .
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
