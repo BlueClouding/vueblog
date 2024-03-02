@@ -27,5 +27,8 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@v4
       with:
         name: 1301866313ding/demo:demo
+        file: vueblog-java/Dockerfile
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+ 
