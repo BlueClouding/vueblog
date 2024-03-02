@@ -1,8 +1,22 @@
-FROM java:8
+FROM centos:8
 
-EXPOSE 8080
+RUN yum -y install java-11-openjdk-devel \
+    && yum -y install kde-l10n-Chinese \
+    && yum -y install glibc-common \
+    && localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 \
+    && cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' > /etc/timezone
 
-ADD vueblog-0.0.1-SNAPSHOT.jar app.jar
-RUN bash -c 'touch /app.jar'
+ENV LC_ALL zh_CN.UTF-8
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
 
-ENTRYPOINT ["java", "-jar", "/app.jar", "--spring.profiles.active=pro"]
+
+# 将打包好的项目添加到镜像中
+COPY bin/service.sh /vueblog-java/bin/service.sh
+COPY build/libs/vueblog-java.jar /vueblog-java/vueblog-java.jar
+
+# 添加脚本的执行权限
+RUN chmod +x /vueblog-java/bin/service.sh
+WORKDIR /vueblog-java
+
+ENTRYPOINT ["bin/service.sh","start","vueblog-java.jar","--no-daemon"]
