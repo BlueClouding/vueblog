@@ -24,17 +24,21 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file vueblog-java/pom.xml
 
-    - name: Build and push Docker image
+    # 先进行 Docker 登入
+    - name: Log in to Docker Hub
       run: |
-        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+        echo "DOCKER_PASSWORD=${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-    - name: push
-      id: docker_build
+    # 设置 TAG 环境变量
+    - name: Prepare tag
+      run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
+
+    # Build and push Docker image
+    - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         file: vueblog-java/Dockerfile
         push: true
-        tags: 1301866313ding/demo:$(date +%s)
-
+        tags: 1301866313ding/demo:${{ env.TAG }}
  
