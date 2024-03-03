@@ -30,7 +30,7 @@ jobs:
    
     # 设置 TAG 环境变量
     - name: Prepare tag
-      run: echo "TAG=vueblog-java$(date +%Y.%m.%d-%H:%M:%S.%3N)" >> $GITHUB_ENV
+      run: echo "TAG=vueblog-java$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
     # Build and push Docker image
     - name: Build and push Docker image
