@@ -16,7 +16,7 @@ export RUNNING_HOME=$PROJECT_HOME/running
 export LOG_HOME=$PROJECT_HOME/log
 
 ### JVM
-JVM_MEMORY="-Xmx4g -Xms4g -Xss1m -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m"
+JVM_MEMORY="-Xmx256m -Xms256m -Xss1m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m"
 JVM_GC="-XX:+UseG1GC -XX:MaxGCPauseMillis=200"
 JVM_GC_LOG="-Xlog:gc*,gc+heap=debug:$LOG_HOME/gc-heap.log:time,uptime,level,tags:filecount=10,filesize=20971520 -Xlog:gc*,gc+heap=debug,safepoint:$LOG_HOME/gc-heap-safepoint.log:time,uptime,level,tags:filecount=10,filesize=20971520"
 JVM_PROPERTIES="-Dfile.encoding=UTF-8"

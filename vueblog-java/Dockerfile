@@ -1,15 +1,7 @@
-FROM centos:7
-
-RUN yum -y install java-11-openjdk-devel \
-    && yum -y install kde-l10n-Chinese \
-    && yum -y install glibc-common \
-    && localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 \
-    && cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo 'Asia/Shanghai' > /etc/timezone
+FROM bbc-registry.cn-hangzhou.cr.aliyuncs.com/docker/openjdk:11.0.16-jre
 
 ENV LC_ALL zh_CN.UTF-8
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
-
 
 # 将打包好的项目添加到镜像中
 COPY vueblog-java/bin/service.sh /vueblog-java/bin/service.sh
