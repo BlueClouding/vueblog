@@ -23,6 +23,13 @@ JVM_PROPERTIES="-Dfile.encoding=UTF-8"
 JVM_ARGS=$JVM_MEMORY" "$JVM_GC" "$JVM_GC_LOG" -XX:+HeapDumpOnOutOfMemoryError"
 JVM_DEBUG="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:34520"
 
+# Use JAVA_HOME if set, otherwise look for java in PATH
+if [ -x "${JAVA_HOME}/bin/java" ]; then
+    JAVA="${JAVA_HOME}/bin/java"
+else
+    JAVA=$(command -v java)
+fi
+
 ### Functions
 function usage(){
 cat << EOF
